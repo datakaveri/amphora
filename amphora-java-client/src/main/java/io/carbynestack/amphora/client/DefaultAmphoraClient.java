@@ -148,6 +148,9 @@ public class DefaultAmphoraClient implements AmphoraClient {
    */
   @Override
   public UUID createSecret(Secret secret) throws AmphoraClientException {
+
+      System.out.println("DefaultAmphoraClient.createSecret: In Amphora client");
+      System.out.println("DefaultAmphoraClient.createSecret: Secret ID: " + secret.getSecretId());
     List<OutputDeliveryObject> inputMaskOutputDeliveryObjects =
         downloadInputMasks(secret.size(), secret.getSecretId().toString());
     List<BigInteger> inputMasks = verifyOutputDeliveryObjects(inputMaskOutputDeliveryObjects);
@@ -475,6 +478,8 @@ public class DefaultAmphoraClient implements AmphoraClient {
    */
   private List<BigInteger> verifyOutputDeliveryObjects(
       List<OutputDeliveryObject> outputDeliveryObjects) throws IntegrityVerificationException {
+
+      System.out.println("Verifying all secrets in verify outputdeliveryobjects");
     List<BigInteger> secrets =
         secretShareUtil.recombineObject(
             outputDeliveryObjects.stream()
