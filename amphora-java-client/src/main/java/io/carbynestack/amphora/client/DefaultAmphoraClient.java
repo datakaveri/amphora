@@ -148,12 +148,13 @@ public class DefaultAmphoraClient implements AmphoraClient {
    */
   @Override
   public UUID createSecret(Secret secret) throws AmphoraClientException {
-
-      System.out.println("DefaultAmphoraClient.createSecret: In Amphora client");
-      System.out.println("DefaultAmphoraClient.createSecret: Secret ID: " + secret.getSecretId());
+      System.out.println("Starting Create Secret");
+      System.out.println("Count of Input masks requested: "+secret.size());
     List<OutputDeliveryObject> inputMaskOutputDeliveryObjects =
         downloadInputMasks(secret.size(), secret.getSecretId().toString());
+    System.out.println("Downloading input masks complete");
     List<BigInteger> inputMasks = verifyOutputDeliveryObjects(inputMaskOutputDeliveryObjects);
+    System.out.println("Verifying input masks complete");
     MaskedInputData[] maskedInputData = new MaskedInputData[secret.size()];
     IntStream.range(0, secret.size())
         .parallel()
@@ -163,11 +164,14 @@ public class DefaultAmphoraClient implements AmphoraClient {
                     secretShareUtil.maskInput(secret.getData()[i], inputMasks.get(i)));
     MaskedInput maskedInput =
         new MaskedInput(secret.getSecretId(), Arrays.asList(maskedInputData), secret.getTags());
+    System.out.println("masked input data "+maskedInputData.toString());
+
     List<RequestParametersWithBody<MaskedInput>> params =
         mapServiceUris(
             uri ->
                 RequestParametersWithBody.of(
                     uri.getMaskedInputUri(), getHeaders(uri), maskedInput));
+    System.out.println("Communication Client uploading");
     checkSuccess(communicationClient.upload(params, URI.class));
     return secret.getSecretId();
   }
@@ -648,6 +652,8 @@ public class DefaultAmphoraClient implements AmphoraClient {
         Lists.newArrayList(
             new BasicNameValuePair(REQUEST_ID_PARAMETER, requestId),
             new BasicNameValuePair(COUNT_PARAMETER, String.valueOf(count)));
+
+    System.out.println("Requesting input masks with request id "+requestId+" and count "+count);
 
     return new ArrayList<>(
         unwrap(

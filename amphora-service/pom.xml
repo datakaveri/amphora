@@ -34,7 +34,7 @@
     </repositories>
     <properties>
         <amphora-common.version>0.2.0</amphora-common.version>
-        <amphora-java-client.version>0.2.0</amphora-java-client.version>
+        <amphora-java-client.version>0.2.2</amphora-java-client.version>
         <!-- skip docker build by default -->
         <dockerfile.skip>false</dockerfile.skip>
         <docker.baseImage>ghcr.io/carbynestack/ubuntu-java-openjre:8-dev</docker.baseImage>
@@ -46,7 +46,7 @@
 
         <!-- external lib versions -->
         <aspectj-weaver.version>1.9.19</aspectj-weaver.version>
-        <commons-io.version>2.11.0</commons-io.version>
+        <commons-io.version>2.14.0</commons-io.version>
         <findbugs.version>3.0.2</findbugs.version>
         <guava-retrying.version>2.0.0</guava-retrying.version>
         <jedis.version>3.9.0</jedis.version>

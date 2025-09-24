@@ -99,8 +99,10 @@ public class StorageService {
     if (hasDuplicateKey(maskedInput.getTags())) {
       throw new IllegalArgumentException(TAGS_WITH_THE_SAME_KEY_DEFINED_EXCEPTION_MSG);
     }
+    System.out.println("Starting to get cached input masks");
     TupleList<InputMask<Field.Gfp>, Field.Gfp> inputMasks =
         inputMaskStore.getCachedInputMasks(maskedInput.getSecretId());
+    System.out.println("Finished getting cached input masks");
     SecretShare secretShare =
         secretShareUtil.convertToSecretShare(
             maskedInput,
