@@ -58,7 +58,7 @@
         <spring-boot.version>2.5.14</spring-boot.version>
         <spring-cloud.version>Hoxton.SR12</spring-cloud.version>
         <spring-data-redis.version>2.7.7</spring-data-redis.version>
-        <tomcat-embed.version>9.0.71</tomcat-embed.version>
+        <tomcat-embed.version>9.0.108</tomcat-embed.version>
 
         <!-- test dependencies -->
         <testcontainer.version>1.17.6</testcontainer.version>
