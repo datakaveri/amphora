@@ -76,8 +76,11 @@ public class InputMaskCachingService {
    */
   @Transactional
   public OutputDeliveryObject getInputMasksAsOutputDeliveryObject(UUID requestId, long count) {
+
+      System.out.println("Service is going to get input masks from Castor");
     TupleList<InputMask<Field.Gfp>, Field.Gfp> inputMaskShares =
         castorClient.downloadTupleShares(requestId, INPUT_MASK_GFP, count);
+    System.out.println("Service has received input masks from Castor");
     byte[] tupleData = new byte[inputMaskShares.size() * Field.GFP.getElementSize()];
     IntStream.range(0, (int) count)
         .parallel()
