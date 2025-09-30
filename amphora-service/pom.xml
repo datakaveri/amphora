@@ -51,7 +51,7 @@
         <guava-retrying.version>2.0.0</guava-retrying.version>
         <jedis.version>3.9.0</jedis.version>
         <kotlin-stdlib.version>1.6.10</kotlin-stdlib.version>
-        <minio-sdk.version>8.5.1</minio-sdk.version>
+        <minio-sdk.version>8.6.0</minio-sdk.version>
         <okhttp3.version>4.10.0</okhttp3.version>
         <postgresql-java-client.version>42.5.1</postgresql-java-client.version>
         <reload4j.version>1.2.24</reload4j.version>
